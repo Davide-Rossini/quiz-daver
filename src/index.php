@@ -32,6 +32,8 @@
         text-align: center;
         font-size: 100px;
         color: #007bff;
+        margin-bottom: 20px;
+        margin-top: 20px;
     }
     .container {
         width: 30%;
