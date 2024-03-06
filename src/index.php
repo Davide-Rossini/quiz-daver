@@ -22,6 +22,10 @@
                 <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </form>
+        <div class="reindir">
+            <a href="login/cambia_password.script.php">Ti sei dimenticato la password?</a>
+            <a href="signup/signup.php">Non sei registrato? Registrati ora!</a>
+        </div>
     </div>
 </body>
 <style>
@@ -54,6 +58,7 @@
         border-radius: 5px;
         border: 1px solid #ccc;
         font-size: 30px;
+        text-align: center;
     }
     .btn {
         padding: 10px;
@@ -75,5 +80,10 @@
         font-weight: 800;
         font-style: normal;
     }
+    .reindir {
+        display: flex;
+        flex-direction: column;
+    }
+    
 </style>
 </html>
