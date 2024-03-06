@@ -9,7 +9,7 @@
     <div class="container">
         <h1>Vuoi cominciare il quiz?</h1>
         <p></p>
-        <form action="quiz1.php" method="post">
+        <form action="quiz/quiz1.php" method="post">
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Si</button>
             </div>
