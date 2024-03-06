@@ -7,6 +7,7 @@
 </head>
 <body>
     <div class="container">
+    <h1>Accedi</h1>
         <form action="selezionaquiz.php" method="post">
             <div class="form-group">
                 <input type="text" name="username" id="username" placeholder="Inserisci l'username..." class="form-control" required>
@@ -20,4 +21,46 @@
         </form>
     </div>
 </body>
+<style>
+    h1{
+        text-align: center;
+        font-size: 100px;
+        color: #007bff;
+    }
+    .container {
+        width: 30%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-top: 100px;
+        text-align: center;
+    }
+    .form-group {
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 30px;
+    }
+    .btn {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        background-color: #007bff;
+        cursor: pointer;
+        font-size: 30px;
+    }
+    .btn-primary {
+        background-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
 </html>
