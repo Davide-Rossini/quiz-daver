@@ -1,3 +1,48 @@
+<?php
+// Includi il file config.php per ottenere le informazioni di connessione al database
+require_once '../db/config.php';
+
+// Messaggio di errore vuoto per la visualizzazione
+$error = '';
+
+// Connessione al database
+$conn = new mysqli(SERVER, UTENTE, PASSWORD, DATABASE, PORT);
+
+// Verifica della connessione
+if ($conn->connect_error) {
+    die("Connessione fallita: " . $conn->connect_error);
+}
+
+// Verifica se il form è stato inviato
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Prendi i dati inviati dal form
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Pulisci i dati
+    $username = mysqli_real_escape_string($conn, $username);
+    $password = mysqli_real_escape_string($conn, $password);
+
+    // Query per verificare se l'utente esiste nel database
+    $sql = "SELECT * FROM users WHERE Username='$username' AND Password='$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // L'utente è autenticato con successo, reindirizza l'utente solo se le credenziali sono presenti nel database
+        header("Location: selezionaquiz.php");
+        exit();
+    } else {
+        // Credenziali non valide
+        $error = "Credenziali non valide.";
+    }
+}
+
+// Chiudi la connessione
+$conn->close();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +56,7 @@
 <body>
     <div class="container">
     <h1>Accedi</h1>
-        <form action="selezionaquiz.php" method="post">
+        <form action="index.php" method="post">
             <div class="form-group">
                 <input type="text" name="username" id="username" placeholder="Inserisci l'username..." class="form-control" required>
             </div>
@@ -19,9 +64,13 @@
                 <input type="password" name="password" id="password" class="form-control" placeholder="Inserisci la password..." required>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary" name="login">Login</button>
             </div>
         </form>
+        <div class="error">
+            <?php echo $error; ?>
+        </div>
+
         <div class="reindir">
             <a href="login/cambia_password.script.php">Ti sei dimenticato la password?</a>
             <a href="signup/signup.php">Non sei registrato? Registrati ora!</a>
@@ -84,6 +133,10 @@
         display: flex;
         flex-direction: column;
     }
-    
+    .error {
+        color: red;
+        margin-bottom: 10px;
+    }
 </style>
 </html>
+

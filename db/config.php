@@ -1,0 +1,7 @@
+<?php
+	define("UTENTE","root");
+	define("PASSWORD","");
+	define("SERVER","localhost");
+	define("DATABASE","quiz-php");+
+    define("PORT", 4306)
+?>
