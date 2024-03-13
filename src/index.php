@@ -15,32 +15,34 @@ if ($conn->connect_error) {
 
 // Verifica se il form è stato inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Prendi i dati inviati dal form
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    // Verifica quale pulsante è stato premuto
+    if (isset($_POST['login'])) {
+        // Prendi i dati inviati dal form
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-    // Pulisci i dati
-    $username = mysqli_real_escape_string($conn, $username);
-    $password = mysqli_real_escape_string($conn, $password);
+        // Pulisci i dati
+        $username = mysqli_real_escape_string($conn, $username);
+        $password = mysqli_real_escape_string($conn, $password);
 
-    // Query per verificare se l'utente esiste nel database
-    $sql = "SELECT * FROM users WHERE Username='$username' AND Password='$password'";
-    $result = $conn->query($sql);
+        // Query per verificare se l'utente esiste nel database
+        $sql = "SELECT * FROM users WHERE Username='$username' AND Password='$password'";
+        $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        // L'utente è autenticato con successo, reindirizza l'utente solo se le credenziali sono presenti nel database
-        header("Location: selezionaquiz.php");
-        exit();
-    } else {
-        // Credenziali non valide
-        $error = "Credenziali non valide.";
+        if ($result->num_rows > 0) {
+            // L'utente è autenticato con successo, reindirizza l'utente solo se le credenziali sono presenti nel database
+            header("Location: selezionaquiz.php");
+            exit();
+        } else {
+            // Credenziali non valide
+            $error = "Credenziali non valide.";
+        }
     }
 }
 
 // Chiudi la connessione
 $conn->close();
 ?>
-
 
 
 <!DOCTYPE html>
@@ -138,5 +140,4 @@ $conn->close();
         margin-bottom: 10px;
     }
 </style>
-</html>
-
+</html
